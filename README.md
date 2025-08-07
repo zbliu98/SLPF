@@ -1,19 +1,24 @@
 # SLPF
-This is an implementation of [Spatio-temporal Partial Sensing Forecast of Long-term Traffic](https://openreview.net/pdf?id=Ff08aPjVjD)
+This is an implementation of TMLR 2025 paper [Spatio-temporal Partial Sensing Forecast of Long-term Traffic](https://openreview.net/pdf?id=Ff08aPjVjD).
 
 
 ## Overview
 
 In this paper, we propose SLPF, a Spatial-temporal Long-term Partial sensing Forecast model for long-term traffic forecasting. SLPF introduces a rank-based node embedding to improve robustness against noise and better capture complex spatio-temporal correlations. We further design a spatial transfer module that leverages both rank-based embeddings and spatial adjacency to extract dynamic traffic patterns, enhancing adaptability and prediction accuracy. Finally, a multi-step training strategy is used for progressive model refinement. Experiments on real-world datasets show that SLPF achieves state-of-the-art accuracy in partial sensing long-term forecasting.
 
-![whole model](whole_model.jpg)
+
+<div align="center">
+  <img src=whole_model.jpg width="500"/>
+</div>
+
+*T: historical input length, T': future output length, M: sensed locations, M': unsensed locations (during inference)*
 
 **Model training consists of three sequential steps:**  
-1. **Dynamic adaptive step:** Trains a module with $\mathcal{X}_{M,T}$ as input and $\mathcal{X}_{M',T}$ as output.  
-2. **Long-term forecasting step:** Trains a module with $\mathcal{X}_{M,T}$ and the previous module's output as input, and $\mathcal{X}_{M,T'}$ as output.  
-3. **Aggregation step:** Trains a module with $\mathcal{X}_{M,T}$ and outputs from the previous two modules as input, and $\mathcal{X}_{M',T'}$ as output.  
+1. **Dynamic adaptive step:** Trains a module with X_M,T as input and X_M',T as output.  
+2. **Long-term forecasting step:** Trains a module with X_M,T and the previous module's output as input, and X_M,T' as output.  
+3. **Aggregation step:** Trains a module with X_M,T and outputs from the previous two modules as input, and X_M',T' as output.  
 
-These three modules are trained in sequence and together form the proposed SLPF.
+These three modules are trained in sequence and together form the proposed SLPF. We require data from all locations during training, but only the data from sensed locations during inference. 
 
 
 
@@ -41,7 +46,7 @@ Also, we provide the all data in the [Baidu Netdisk](https://pan.baidu.com/s/1TO
 ```bash
 cd model
 
-python run_SLPF.py --dataset=PEMS08 --seed=6 --num_unsensed_locs=150 --lr_init=0.001 # add arguments you want
+python run_SLPF.py --dataset=PEMS08 --seed=6 --num_unsensed_locs=150 --lr_init=0.001 # add arguments you want or alter model/configs/{dataset}.conf
 ```
 - inference process
 
@@ -71,4 +76,5 @@ url={https://openreview.net/forum?id=Ff08aPjVjD},
 note={Under review}
 }
 ```
+
 
