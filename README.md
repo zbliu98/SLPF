@@ -67,15 +67,17 @@ python run_SLPF.py \
 If you find the paper or the repo useful, please cite it with
 ```
 @article{
-anonymous2025spatiotemporal,
+liu2025spatiotemporal,
 title={Spatio-temporal Partial Sensing Forecast of Long-term Traffic},
-author={Anonymous},
-journal={Submitted to Transactions on Machine Learning Research},
+author={Zibo Liu and Zhe Jiang and Zelin Xu and Tingsong Xiao and Zhengkun Xiao and Yupu Zhang and Haibo Wang and Shigang Chen},
+journal={Transactions on Machine Learning Research},
+issn={2835-8856},
 year={2025},
 url={https://openreview.net/forum?id=Ff08aPjVjD},
-note={Under review}
+note={}
 }
 ```
+
 
 
 
